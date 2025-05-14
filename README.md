@@ -1,5 +1,4 @@
 
-````markdown
 # RoommateMatch Platform
 
 RoommateMatch is a web-based prototype developed to help students at university find compatible roommates based on lifestyle preferences, habits, and personal values. By allowing students to customize their profiles and match criteria, RoommateMatch aims to reduce roommate conflicts and create more harmonious living environments within university accommodations.
@@ -57,7 +56,7 @@ The platform also includes administrative tools for managing users and reviewing
    ```bash
    git clone https://github.com/yourusername/roommatematch.git
    cd roommatematch
-````
+
 
 2. Create a virtual environment and activate it:
 
