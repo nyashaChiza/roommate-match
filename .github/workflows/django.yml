@@ -28,3 +28,7 @@ jobs:
     - name: Run Tests
       run: |
         python manage.py test
+      
+      env:
+          SECRET_KEY: "django-insecure-c0y7^zo53cwo$0!4(7ife!=%$46wk=6*)g$rgivz41uncm%z@)"
+          DEBUG: 1
