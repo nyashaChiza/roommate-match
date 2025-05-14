@@ -1,0 +1,129 @@
+{% load static %}
+
+<div class="nk-sidebar is-light nk-sidebar-fixed is-light " data-content="sidebarMenu">
+    <div class="nk-sidebar-element nk-sidebar-head">
+        {% comment %} <div class="nk-sidebar-brand">
+            <a href="#" class="logo-link nk-sidebar-logo">
+                <img class="logo-light logo-img" src="{% static 'images/logo.png' %}" srcset="{% static 'images/logo.png' %}" alt="logo">
+                <img class="logo-dark logo-img" src="{% static 'images/logo.png' %}" srcset="{% static 'images/logo.png' %}" alt="logo-dark">
+                <img class="logo-small logo-img logo-img-small" src="{% static 'images/logo.png' %}" srcset="{% static 'images/logo.png ' %}" alt="logo-small">
+            </a>
+        </div> {% endcomment %}
+        <div class="nk-menu-trigger me-n2">
+            <a href="#" class="nk-nav-toggle nk-quick-nav-icon d-xl-none" data-target="sidebarMenu"><em class="icon ni ni-arrow-left"></em></a>
+        </div>
+    </div><!-- .nk-sidebar-element -->
+    <div class="nk-sidebar-element">
+        <div class="nk-sidebar-content">
+            <div class="nk-sidebar-menu" data-simplebar>
+                <ul class="nk-menu">
+                    <li class="nk-menu-heading">
+                        <h6 class="overline-title text-primary-alt">{{request.user.role}} Dashboard</h6>
+                    </li><!-- .nk-menu-item -->
+                    <li class="nk-menu-item">
+                        <a href="{% url 'dashboard' %}" class="nk-menu-link">
+                            <span class="nk-menu-icon"><em class="icon ni ni-presentation"></em></span>
+                            <span class="nk-menu-text">Dashboard</span>
+                        </a>
+                    </li>
+                    {% if request.user.role == 'Admin' %}
+                    <!-- .nk-menu-item -->
+                    
+                    
+                    <li class="nk-menu-item">
+                        <a href="{% url 'users_index' %}" class="nk-menu-link">
+                            <span class="nk-menu-icon">
+                                <em class="icon ni ni-folder-list"></em>
+                            </span>
+                            <span class="nk-menu-text">Users</span>
+                        </a>
+                    </li>
+                    
+                    {% endif %}
+                    {% if user.role == 'Doctor' or user.role == 'Admin' or user.role == 'Patient' %}
+                    <li class="nk-menu-item has-sub">
+                        <a href="#" class="nk-menu-link nk-menu-toggle">
+                            <span class="nk-menu-icon"><em class="icon ni ni-clipboard"></em></span>
+                            <span class="nk-menu-text">Medical History</span>
+                        </a>
+                        <ul class="nk-menu-sub" style="display: none;">
+                            <li class="nk-menu-item">
+                                <a href="{% url 'treatment_index' %}" class="nk-menu-link"><span class="nk-menu-text">Treatments</span></a>
+                            </li>
+                            <li class="nk-menu-item">
+                                <a href="{% url 'test_index' %}" class="nk-menu-link"><span class="nk-menu-text">Tests</span></a>
+                            </li>
+                        </ul><!-- .nk-menu-sub -->
+                    </li>
+                    {% endif %}
+                {% if user.role == 'Researcher' %}
+                <li class="nk-menu-item has-sub">
+                    <a href="#" class="nk-menu-link nk-menu-toggle">
+                        <span class="nk-menu-icon"><em class="icon ni ni-clipboard"></em></span>
+                        <span class="nk-menu-text">Medical Data</span>
+                    </a>
+                    <ul class="nk-menu-sub" style="display: none;">
+                        <li class="nk-menu-item">
+                            <a href="{% url 'age_dashboard' %}" class="nk-menu-link"><span class="nk-menu-text">Age</span></a>
+                        </li>
+                        <li class="nk-menu-item">
+                            <a href="{% url 'location_dashboard' %}" class="nk-menu-link"><span class="nk-menu-text">Location</span></a>
+                        </li>
+                        <li class="nk-menu-item">
+                            <a href="{% url 'gender_dashboard' %}" class="nk-menu-link"><span class="nk-menu-text">Gender</span></a>
+                        </li>
+                       
+                    </ul><!-- .nk-menu-sub -->
+                </li>
+                {% endif %}
+                
+                {% if user.role == 'Doctor' %}
+                <li class="nk-menu-item">
+                    <a href="{% url 'patient_index' %}" class="nk-menu-link">
+                        <span class="nk-menu-icon">
+                            <em class="icon ni ni-user-c"></em>
+                        </span>
+                        <span class="nk-menu-text">Patients</span>
+                    </a>
+                </li>
+                <li class="nk-menu-item">
+                    <a href="{% url 'medicine_index' %}" class="nk-menu-link">
+                        <span class="nk-menu-icon">
+                            <em class="icon ni ni-bag"></em>
+                        </span>
+                        <span class="nk-menu-text">Patients On Medication</span>
+                    </a>
+                </li>
+                <li class="nk-menu-item">
+                    <a href="{% url 'medicine_only_index' %}" class="nk-menu-link">
+                        <span class="nk-menu-icon">
+                            <em class="icon ni ni-bag"></em>
+                        </span>
+                        <span class="nk-menu-text">Medicine</span>
+                    </a>
+                </li>
+                <li class="nk-menu-item">
+                    <a href="{% url 'stats_index' %}" class="nk-menu-link">
+                        <span class="nk-menu-icon">
+                            <em class="icon ni ni-bag"></em>
+                        </span>
+                        <span class="nk-menu-text">Analytics</span>
+                    </a>
+                </li>
+                {% endif %}
+                {% if user.role == 'Doctor' or user.role == 'Admin' or user.role == 'Patient' %}
+                    <li class="nk-menu-item">
+                        <a href="{% url 'approval_index' %}" class="nk-menu-link">
+                            <span class="nk-menu-icon">
+                                <em class="icon ni ni-shield-check"></em>
+                            </span>
+                            <span class="nk-menu-text">Approvals</span>
+                        </a>
+                    </li>
+                    {% endif %}
+                    <!-- .nk-menu-item -->
+                </ul><!-- .nk-menu -->
+            </div><!-- .nk-sidebar-menu -->
+        </div><!-- .nk-sidebar-content -->
+    </div><!-- .nk-sidebar-element -->
+</div>
