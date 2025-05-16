@@ -33,6 +33,8 @@ INSTALLED_APPS = [
     # Local apps
     'accounts',
     'dashboard',
+    'roommaterequests',
+
 ]
 
 MIDDLEWARE = [
