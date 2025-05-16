@@ -2,75 +2,135 @@
 {% load static %}
 
 
-{% block nav %}
-<div class="nk-block-head-content">
-    <h3 class="nk-block-title page-title">Users Lists</h3>
-
-</div><!-- .nk-block-head-content -->
-<div class="nk-block-head-content">
-    <div class="toggle-wrap nk-block-tools-toggle">
-        <a href="#" class="btn btn-icon btn-trigger toggle-expand me-n1" data-target="pageMenu"><em class="icon ni ni-menu-alt-r"></em></a>
-        <div class="toggle-expand-content" data-content="pageMenu">
-            <ul class="nk-block-tools g-3 mx-1">
-                <li><a href="" class="btn btn-white btn-outline-light"><em class="icon ni ni-plus"></em><span>Add New</span></a></li>
-            </ul>
-        </div>
-    </div><!-- .toggle-wrap -->
-</div><!-- .nk-block-head-content -->
-</div>
-{% endblock %}
-
 {% block body %}
-
-<div class="nk-block nk-block-lg">
-    <div class="card card-bordered card-preview">
-        <div class="card-inner">
-            <table class="datatable-init-export nowrap table" data-export-title="Export">
-                <thead>
-                    <tr>
-                        <th>
-                            Username
-                        </th>
-                        <th>
-                            Email
-                        </th>
-                        <th>
-                            Role
-                        </th>
-                        <th>
-                            Created
-                        </th>
-                        <th>
-                            Actions
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {%for user in users %}
-                            <tr>
-                                <td>{{user.user.first_name}} {{user.user.last_name}}</td>
-                                <td>{{user.user.email}}</td>
-                                <td>{{user.user_type}}</td>
-                                <td>{{user.created}}</td>
-                                <td class="tb-tnx-action">
-                                    <div class="dropdown">
-                                        <a class="text-soft dropdown-toggle btn btn-icon btn-trigger" data-bs-toggle="dropdown" aria-expanded="false"><em class="icon ni ni-more-h"></em></a>
-                                        <div class="dropdown-menu dropdown-menu-end dropdown-menu-xs" >
-                                            <ul class="link-list-plain">
-                                                <li><a class="link-list-plain" href="" class='px-1'>Update</a></li>
-                                                <li><a class="link-list-plain" href="{% url 'profile_detail' user.user.pk %}" class='px-1'>Profile</a></li>
-                                                </ul>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                  
+<div class="card card-bordered card-preview">
+    <div class="card-inner">
+        <div id="accordion" class="accordion">
+            <div class="accordion-item">
+                <a href="#" class="accordion-head collapsed" data-bs-toggle="collapse" data-bs-target="#accordion-item-1" aria-expanded="false">
+                    <h6 class="title">Requests Recieved</h6>
+                    <span class="accordion-icon"></span>
+                </a>
+                <div class="accordion-body collapse" id="accordion-item-1" data-bs-parent="#accordion" style="">
+                    <div class="accordion-inner">
+                        <div class="nk-block nk-block-lg">
+                            <div class="card card-bordered card-preview">
+                                <div class="card-inner">
+                                    <table class="datatable-init-export nowrap table" data-export-title="Export">
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                    Username
+                                                </th>
+                                                <th>
+                                                    Email
+                                                </th>
+                                                <th>
+                                                    Role
+                                                </th>
+                                                <th>
+                                                    Created
+                                                </th>
+                                                <th>
+                                                    Actions
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {%for user in users %}
+                                                    <tr>
+                                                        <td>{{user.user.first_name}} {{user.user.last_name}}</td>
+                                                        <td>{{user.user.email}}</td>
+                                                        <td>{{user.user_type}}</td>
+                                                        <td>{{user.created}}</td>
+                                                        <td class="tb-tnx-action">
+                                                            <div class="dropdown">
+                                                                <a class="text-soft dropdown-toggle btn btn-icon btn-trigger" data-bs-toggle="dropdown" aria-expanded="false"><em class="icon ni ni-more-h"></em></a>
+                                                                <div class="dropdown-menu dropdown-menu-end dropdown-menu-xs" >
+                                                                    <ul class="link-list-plain">
+                                                                        <li><a class="link-list-plain" href="" class='px-1'>Update</a></li>
+                                                                        <li><a class="link-list-plain" href="{% url 'profile_detail' user.user.pk %}" class='px-1'>Profile</a></li>
+                                                                        </ul>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                          
+                                                
                         
-
-                    {% endfor%}
-                </tbody>
-            </table>
+                                            {% endfor%}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <a href="#" class="accordion-head collapsed" data-bs-toggle="collapse" data-bs-target="#accordion-item-2" aria-expanded="false">
+                    <h6 class="title">Requests Sent</h6>
+                    <span class="accordion-icon"></span>
+                </a>
+                <div class="accordion-body collapse" id="accordion-item-2" data-bs-parent="#accordion">
+                    <div class="accordion-inner">
+                        <div class="nk-block nk-block-lg">
+                            <div class="card card-bordered card-preview">
+                                <div class="card-inner">
+                                    <table class="datatable-init-export nowrap table" data-export-title="Export">
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                    Username
+                                                </th>
+                                                <th>
+                                                    Email
+                                                </th>
+                                                <th>
+                                                    Role
+                                                </th>
+                                                <th>
+                                                    Created
+                                                </th>
+                                                <th>
+                                                    Actions
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {%for user in users %}
+                                                    <tr>
+                                                        <td>{{user.user.first_name}} {{user.user.last_name}}</td>
+                                                        <td>{{user.user.email}}</td>
+                                                        <td>{{user.user_type}}</td>
+                                                        <td>{{user.created}}</td>
+                                                        <td class="tb-tnx-action">
+                                                            <div class="dropdown">
+                                                                <a class="text-soft dropdown-toggle btn btn-icon btn-trigger" data-bs-toggle="dropdown" aria-expanded="false"><em class="icon ni ni-more-h"></em></a>
+                                                                <div class="dropdown-menu dropdown-menu-end dropdown-menu-xs" >
+                                                                    <ul class="link-list-plain">
+                                                                        <li><a class="link-list-plain" href="" class='px-1'>Update</a></li>
+                                                                        <li><a class="link-list-plain" href="{% url 'profile_detail' user.user.pk %}" class='px-1'>Profile</a></li>
+                                                                        </ul>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                          
+                                                
+                        
+                                            {% endfor%}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
         </div>
     </div>
 </div>
+
 {% endblock %}
