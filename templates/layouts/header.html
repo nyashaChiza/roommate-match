@@ -90,19 +90,16 @@
                                     </div>
                                     <div class="user-info">
                                         <span class="lead-text">{{ request.user }}</span>
-                                        <span class="sub-text">{{ request.user.role }}</span>
+                                        <span class="sub-text">{{ request.user.profile.user_type }}</span>
                                     </div>
                                 </div>
                             </div>
                             <div class="dropdown-inner">
-                                <ul class="link-list">
-                                    <li><a href="{% url 'account_detail' request.user.pk  %}"><em class="icon ni ni-user-alt"></em><span>View Profile</span></a></li>
-                                    
-                                </ul>
+                                
                             </div>
                             <div class="dropdown-inner">
                                 <ul class="link-list">
-                                    <li><a class="text-danger" href="{% url 'accounts_logout' %}"><em class="icon ni ni-signout"></em><span >Sign out</span></a></li>
+                                    <li><a class="text-danger" href="{% url 'account_logout' %}"><em class="icon ni ni-signout"></em><span >Sign out</span></a></li>
                                 </ul>
                             </div>
                         </div>

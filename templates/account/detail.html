@@ -12,7 +12,7 @@
                              <div class="nk-block-head nk-block-head-lg">
                                  <div class="nk-block-between">
                                      <div class="nk-block-head-content">
-                                         <h4 class="nk-block-title">Personal Information</h4>
+                                         <h4 class="nk-block-title">Roommate Profile</h4>
                                         </div>
                                      <div class="nk-block-head-content align-self-start d-lg-none">
                                          <a href="#" class="toggle btn btn-icon btn-trigger mt-n1" data-target="userAside"><em class="icon ni ni-menu-alt-r"></em></a>
@@ -23,12 +23,12 @@
                              <div class="nk-block">
                                  <div class="nk-data data-list">
                                      <div class="data-head">
-                                         <h6 class="overline-title">Account</h6>
+                                         <h6 class="overline-title">Personal Information</h6>
                                      </div>
                                      <div class="data-item" data-bs-toggle="modal" data-bs-target="#profile-edit">
                                          <div class="data-col">
                                              <span class="data-label">Full Name</span>
-                                             <span class="data-value">{{ user }}</span>
+                                             <span class="data-value">{{ profile.user.first_name }} {{ profile.user.last_name }}</span>
                                          </div>
                                          <div class="data-col data-col-end"><span class="data-more"><em class="icon ni ni-forward-ios"></em></span></div>
                                      </div><!-- data-item -->
@@ -41,8 +41,8 @@
                                      </div><!-- data-item -->
                                      <div class="data-item">
                                          <div class="data-col">
-                                             <span class="data-label">Phone Number</span>
-                                             <span class="data-value">{{ user.phone_number }}</span>
+                                             <span class="data-label">Gender</span>
+                                             <span class="data-value">{{ user.profile.gender }}</span>
                                          </div>
                                          <div class="data-col data-col-end"><span class="data-more disable"><em class="icon ni ni-lock-alt"></em></span></div>
                                      </div><!-- data-item -->
@@ -55,46 +55,71 @@
                                      </div><!-- data-item -->
                                      <div class="data-item" data-bs-toggle="modal" data-bs-target="#profile-edit">
                                          <div class="data-col">
-                                             <span class="data-label">Role</span>
-                                             <span class="data-value">{{ user.profile.user_type }}</span>
+                                             <span class="data-label">Age</span>
+                                             <span class="data-value">{{ profile.get_age }}</span>
                                          </div>
                                          <div class="data-col data-col-end"><span class="data-more"><em class="icon ni ni-forward-ios"></em></span></div>
                                      </div>
-                                     {% if user.profile.user_type == 'Service Provider' %}
-                                     <div class="data-item" data-bs-toggle="modal" data-bs-target="#profile-edit">
-                                        <div class="data-col">
-                                            <span class="data-label">Is Certified</span>
-                                            <span class="data-value">{% if user.profile.certification_document %}<em class=" icon ni ni-check-circle"></em>{% else %}<em class=" icon ni ni-cross-circle"></em>{% endif %}</span>
-                                        </div>
-                                        <div class="data-col data-col-end"><span class="data-more"><em class="icon ni ni-forward-ios"></em></span></div>
-                                    </div>
-                                    <div class="data-item" data-bs-toggle="modal" data-bs-target="#profile-edit">
-                                        <div class="data-col">
-                                            <span class="data-label">Identfication Document</span>
-                                            <span class="data-value">{% if user.profile.identification_document %}<em class=" icon ni ni-check-circle"></em>{% else %}<em class=" icon ni ni-cross-circle"></em>{% endif %}</span>
-                                            
-                                        </div>
-                                        <div class="data-col data-col-end"><span class="data-more"><em class="icon ni ni-forward-ios"></em></span></div>
-                                    </div>
-                                    <div class="data-item" data-bs-toggle="modal" data-bs-target="#profile-edit">
-                                        <div class="data-col">
-                                            <span class="data-label">Proof of Address</span>
-                                            <span class="data-value">{% if user.profile.proof_of_address %}<em class="icon ni ni-check-circle"></em>{% else %}<em class="icon ni ni-cross-circle"></em>{% endif %}</span>
-                                        </div>
-                                        <div class="data-col data-col-end"><span class="data-more"><em class="icon ni ni-forward-ios"></em></span></div>
-                                    </div>
-                                    <div class="data-item" data-bs-toggle="modal" data-bs-target="#profile-edit">
-                                        <div class="data-col">
-                                            <span class="data-label">Verification Status</span>
-                                            <span class="data-value">{{ user.profile.verification_status }}</span>
-                                        </div>
-                                        <div class="data-col data-col-end"><span class="data-more"><em class="icon ni ni-forward-ios"></em></span></div>
-                                    </div>
-                                     {% endif %}<!-- data-item -->
-                                     <!-- data-item -->
+                                    <!-- data-item -->
                                  </div><!-- data-list -->
                                  <!-- data-list -->
                              </div>
+                             <div class="nk-block">
+                                <div class="nk-data data-list">
+                                    <div class="data-head">
+                                        <h6 class="overline-title">Matching Preferences</h6>
+                                    </div>
+                                    <div class="data-item" data-bs-toggle="modal" data-bs-target="#profile-edit">
+                                        <div class="data-col">
+                                            <span class="data-label">Sleep Schedule</span>
+                                            <span class="data-value">{{ profile.sleep_schedule }}</span>
+                                        </div>
+                                        <div class="data-col data-col-end"><span class="data-more"><em class="icon ni ni-forward-ios"></em></span></div>
+                                    </div><!-- data-item -->
+                                    <div class="data-item" data-bs-toggle="modal" data-bs-target="#profile-edit">
+                                        <div class="data-col">
+                                            <span class="data-label">Level Of cleanliness</span>
+                                            <span class="data-value">{{ profile.cleanliness_level }}</span>
+                                        </div>
+                                        <div class="data-col data-col-end"><span class="data-more"><em class="icon ni ni-forward-ios"></em></span></div>
+                                    </div><!-- data-item -->
+                                    <div class="data-item">
+                                        <div class="data-col">
+                                            <span class="data-label">Social Habits</span>
+                                            <span class="data-value">{{ profile.social_habits }}</span>
+                                        </div>
+                                        <div class="data-col data-col-end"><span class="data-more disable"><em class="icon ni ni-lock-alt"></em></span></div>
+                                    </div><!-- data-item -->
+                                    <!-- data-item -->
+                                   
+                                </div><!-- data-list -->
+                                <!-- data-list -->
+                            </div>
+                            <div class="nk-block">
+                                <div class="nk-data data-list">
+                                    <div class="data-head">
+                                        <h6 class="overline-title">Additional Preferences</h6>
+                                    </div>
+                                    <div class="data-item" data-bs-toggle="modal" data-bs-target="#profile-edit">
+                                        <div class="data-col">
+                                            <span class="data-label">hobbies</span>
+                                            <span class="data-value">{{ profile.hobbies }}</span>
+                                        </div>
+                                        <div class="data-col data-col-end"><span class="data-more"><em class="icon ni ni-forward-ios"></em></span></div>
+                                    </div><!-- data-item -->
+                                    <div class="data-item" data-bs-toggle="modal" data-bs-target="#profile-edit">
+                                        <div class="data-col">
+                                            <span class="data-label">Interests</span>
+                                            <span class="data-value">{{ profile.interests }}</span>
+                                        </div>
+                                        <div class="data-col data-col-end"><span class="data-more"><em class="icon ni ni-forward-ios"></em></span></div>
+                                    </div><!-- data-item -->
+                                    <!-- data-item -->
+                                    <!-- data-item -->
+                                   
+                                </div><!-- data-list -->
+                                <!-- data-list -->
+                            </div>
                          </div>
                          <div class="card-aside card-aside-left user-aside toggle-slide toggle-slide-left toggle-break-lg toggle-screen-lg" data-toggle-body="true" data-content="userAside" data-toggle-screen="lg" data-toggle-overlay="true">
                              <div class="card-inner-group" data-simplebar="init"><div class="simplebar-wrapper" style="margin: 0px;"><div class="simplebar-height-auto-observer-wrapper"><div class="simplebar-height-auto-observer"></div></div><div class="simplebar-mask"><div class="simplebar-offset" style="right: 0px; bottom: 0px;"><div class="simplebar-content-wrapper" tabindex="0" role="region" aria-label="scrollable content" style="height: auto; overflow: hidden;"><div class="simplebar-content" style="padding: 0px;">
@@ -104,20 +129,10 @@
                                              <span>{{ user.avatar }}</span>
                                          </div>
                                          <div class="user-info">
-                                             <span class="lead-text">{{ user }}</span>
-                                             <span class="sub-text">{{ user.email}}</span>
+                                             <span class="lead-text">{{ profile.user.first_name }} {{ profile.user.last_name }}</span>
+                                             <span class="sub-text">{{ user}}</span>
                                          </div>
-                                         <div class="user-action">
-                                             <div class="dropdown">
-                                                 <a class="btn btn-icon btn-trigger me-n2" data-bs-toggle="dropdown" href="#"><em class="icon ni ni-more-v"></em></a>
-                                                 <div class="dropdown-menu dropdown-menu-end">
-                                                     <ul class="link-list-opt no-bdr">
-                                                         <li><a href="#"><em class="icon ni ni-camera-fill"></em><span>Change Photo</span></a></li>
-                                                         <li><a href="#"><em class="icon ni ni-edit-fill"></em><span>Update Profile</span></a></li>
-                                                     </ul>
-                                                 </div>
-                                             </div>
-                                         </div>
+                                         
                                      </div><!-- .user-card -->
                                  </div><!-- .card-inner -->
                                  <div class="card-inner">

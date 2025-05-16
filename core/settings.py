@@ -1,5 +1,6 @@
 
 
+import os
 from pathlib import Path
 from decouple import config
 
@@ -28,6 +29,10 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+
+    # Local apps
+    'accounts',
+    'dashboard',
 ]
 
 MIDDLEWARE = [
@@ -101,3 +106,13 @@ ACCOUNT_FORMS = {
     'signup': 'accounts.forms.CustomSignupForm',
 }
 
+LOGIN_REDIRECT_URL = 'dashboard'
+# settings.py
+
+# Static files (CSS, JS, images)
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+# For user-uploaded files (if needed)
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
