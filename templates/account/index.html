@@ -1,0 +1,53 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block body %}
+<div class="card card-bordered card-preview">
+    <div class="card-inner">
+        <table class="datatable-init-export nowrap table" data-export-title="Export">
+            <thead>
+                <tr>
+                    <th>
+                        First Name
+                    </th>
+                    <th>
+                        last Name
+                    </th>
+                    <th>
+                        User Type
+                    </th>
+                    <th>
+                        Created
+                    </th>
+                    <th>
+                        Actions
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                {%for user in users %}
+                        <tr>
+                            <td>{{user.first_name}}</td>
+                            <td>{{user.last_name}}</td>
+                            <td>{{user.profile.user_type}}</td>
+                            <td>{{user.created}}</td>
+                            <td class="tb-tnx-action">
+                                <div class="dropdown">
+                                    <a class="text-soft dropdown-toggle btn btn-icon btn-trigger" data-bs-toggle="dropdown" aria-expanded="false"><em class="icon ni ni-more-h"></em></a>
+                                    <div class="dropdown-menu dropdown-menu-end dropdown-menu-xs" >
+                                        <ul class="link-list-plain">
+                                            <li><a class="link-list-plain" href="{% url 'user_delete' user.pk %}" class='px-1'>remove</a></li>
+                                            </ul>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+              
+                    
+
+                {% endfor%}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

@@ -110,6 +110,7 @@ ACCOUNT_FORMS = {
 }
 
 LOGIN_REDIRECT_URL = 'dashboard'
+LOGOUT_REDIRECT_URL = 'account_login'
 # settings.py
 
 # Static files (CSS, JS, images)

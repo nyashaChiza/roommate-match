@@ -2,7 +2,7 @@
 
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
-from roommaterequests.forms import RoommateRequestForm
+from roommaterequests.forms import RoommateRequestForm, RoommateRequestReviewForm
 from .models import RoommateRequest
 from django.views.generic import  UpdateView
 from django.contrib.auth import get_user_model
@@ -54,12 +54,35 @@ def create_request_view(request, pk):
     return redirect('profile_detail', pk=request.user.profile.pk)
 
 
-class RoommateRequestReviewView(UpdateView):
-    model = RoommateRequest
-    fields = ['status']
-    template_name = 'requests/review.html'
-    form_class = RoommateRequestForm
+@login_required
+def roommate_request_review(request, pk):
+    roommate_request = get_object_or_404(RoommateRequest, pk=pk)
 
-    def form_valid(self, form):
-        form.instance.status = 'Accepted'
-        return super().form_valid(form)
+    # Restrict access to only the receiver of the request
+    if request.user != roommate_request.receiver:
+        return render(request, '403.html', status=403)
+
+    if request.method == 'POST':
+        form = RoommateRequestReviewForm(request.POST, instance=roommate_request)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Roommate request reviewed successfully!')
+            return redirect('roommate_requests_index')
+        else:
+            messages.error(request, 'There was an error reviewing the request.')
+            settings.LOGGER.warning(f"Error reviewing roommate request from {form.errors}")
+    else:
+        form = RoommateRequestForm(instance=roommate_request)
+
+    return render(request, 'requests/detail.html', {
+        'form': form,
+        'roommate_request': roommate_request,
+    })
+    
+
+def delete_request_view(request, pk):
+    roommate_request = get_object_or_404(RoommateRequest, pk=pk)
+    roommate_request.delete()
+    messages.success(request, 'Roommate request deleted successfully!')
+    return redirect('roommate_requests_index')
+    

@@ -1,7 +1,105 @@
 {% extends 'layouts/base.html' %}
 {% load static %}
 
-
 {% block body %}
-
+<div class="nk-content nk-content-fluid">
+     <div class="container-xl wide-xl">
+         <div class="nk-content-body">
+             <div class="nk-block">
+                 <div class="card">
+                     <div class="card-aside-wrap">
+                         <div class="card-inner card-inner-lg">
+                             <div class="nk-block-head nk-block-head-lg">
+                                 <div class="nk-block-between">
+                                     <div class="nk-block-head-content">
+                                         <h4 class="nk-block-title">Request Review</h4>
+                                        </div>
+                                     <div class="nk-block-head-content align-self-start d-lg-none">
+                                         <a href="#" class="toggle btn btn-icon btn-trigger mt-n1" data-target="userAside"><em class="icon ni ni-menu-alt-r"></em></a>
+                                     </div>
+                                 </div>
+                             </div><!-- .nk-block-head -->
+                             <!-- .nk-block -->
+                             <div class="nk-block">
+                                 <div class="nk-data data-list">
+                                     <div class="data-head">
+                                         <h6 class="overline-title">Review Information</h6>
+                                     </div>
+                                     <div class="data-item" data-bs-toggle="modal" data-bs-target="#profile-edit">
+                                         <div class="data-col">
+                                             <span class="data-label">Sender</span>
+                                             <span class="data-value"> {{ roommate_request.sender }}</span>
+                                         </div>
+                                         <div class="data-col data-col-end"><span class="data-more"><em class="icon ni ni-forward-ios"></em></span></div>
+                                     </div><!-- data-item -->
+                                     <div class="data-item" data-bs-toggle="modal" data-bs-target="#profile-edit">
+                                         <div class="data-col">
+                                             <span class="data-label">Receiver</span>
+                                             <span class="data-value">{{ roommate_request.receiver }}</span>
+                                         </div>
+                                         <div class="data-col data-col-end"><span class="data-more"><em class="icon ni ni-forward-ios"></em></span></div>
+                                     </div><!-- data-item -->
+                                     <div class="data-item">
+                                         <div class="data-col">
+                                             <span class="data-label">Status</span>
+                                             <span class="data-value">{{ roommate_request.status }}</span>
+                                         </div>
+                                         <div class="data-col data-col-end"><span class="data-more disable"><em class="icon ni ni-lock-alt"></em></span></div>
+                                     </div><!-- data-item -->
+                                     <div class="data-item" data-bs-toggle="modal" data-bs-target="#profile-edit">
+                                         <div class="data-col">
+                                             <span class="data-label">Created On</span>
+                                             <span class="data-value text-soft">{{ roommate_request.created }}</span>
+                                         </div>
+                                         <div class="data-col data-col-end"><span class="data-more"><em class="icon ni ni-forward-ios"></em></span></div>
+                                     </div><!-- data-item -->
+                                    </div><!-- data-list -->
+                                 <!-- data-list -->
+                             </div>
+                         </div>
+                         <div class="card-aside card-aside-left user-aside toggle-slide toggle-slide-left toggle-break-lg toggle-screen-lg" data-toggle-body="true" data-content="userAside" data-toggle-screen="lg" data-toggle-overlay="true">
+                             <div class="card-inner-group" data-simplebar="init"><div class="simplebar-wrapper" style="margin: 0px;"><div class="simplebar-height-auto-observer-wrapper"><div class="simplebar-height-auto-observer"></div></div><div class="simplebar-mask"><div class="simplebar-offset" style="right: 0px; bottom: 0px;"><div class="simplebar-content-wrapper" tabindex="0" role="region" aria-label="scrollable content" style="height: auto; overflow: hidden;"><div class="simplebar-content" style="padding: 0px;">
+                                 <div class="card-inner">
+                                     <div class="user-card">
+                                        
+                                         <div class="user-info">
+                                             <span class="lead-text h1">Review</span>
+                                             
+                                         </div>
+                                         
+                                     </div><!-- .user-card -->
+                                 </div><!-- .card-inner -->
+                                 <div class="card-inner">
+                                    <div class="user-card">
+                                      
+                                        <form method="post" action="{% url 'roommate_request_review' roommate_request.pk %}">
+                                            {% csrf_token %}
+                                            <div class="user-info">
+                                                <div class="form-group">
+                                                    <label class="form-label" for="approval-status">Select Approval Status</label>
+                                                    <div class="form-control-wrap">
+                                                        <div class="form-control-select">
+                                                            <select class="form-control" id="approval-status" name="status" required>
+                                                                <option value="" disabled selected>Select an option</option>
+                                                                <option value="Accepted">Approve</option>
+                                                                <option value="Denied">Reject</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <button type="submit" class="btn btn-primary">Submit</button>
+                                            </div>
+                                        </form>
+                                        
+                                    </div>
+                                 </div><!-- .card-inner -->
+                                 <!-- .card-inner -->
+                             </div></div></div></div><div class="simplebar-placeholder" style="width: auto; height: 503px;"></div></div><div class="simplebar-track simplebar-horizontal" style="visibility: hidden;"><div class="simplebar-scrollbar" style="width: 0px; display: none;"></div></div><div class="simplebar-track simplebar-vertical" style="visibility: hidden;"><div class="simplebar-scrollbar" style="height: 0px; display: none;"></div></div></div><!-- .card-inner-group -->
+                         </div><!-- card-aside -->
+                     </div><!-- .card-aside-wrap -->
+                 </div><!-- .card -->
+             </div><!-- .nk-block -->
+         </div>
+     </div>
+ </div>
 {% endblock %}

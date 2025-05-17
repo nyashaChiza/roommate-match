@@ -45,6 +45,7 @@
                             <span class="nk-menu-text">Questioneer</span>
                         </a>
                     </li>
+                    {% if user.profile %}
                     <li class="nk-menu-item">
                         <a href="{% url 'profile_detail' user.profile.pk %}" class="nk-menu-link">
                             <span class="nk-menu-icon">
@@ -53,14 +54,17 @@
                             <span class="nk-menu-text">Profile</span>
                         </a>
                     </li>
+                    {% endif %}
+                    {% if user.profile.user_type%}
                     <li class="nk-menu-item">
-                        <a href="html/copywriter/history.html" class="nk-menu-link">
+                        <a href="{% url 'user_list' %}" class="nk-menu-link">
                             <span class="nk-menu-icon">
                                 <em class="icon ni ni-users"></em>
                             </span>
                             <span class="nk-menu-text">Users</span>
                         </a>
                     </li>
+                    {%endif %}
                     <!-- .nk-menu-item -->
                 </ul><!-- .nk-menu -->
             </div><!-- .nk-sidebar-menu -->

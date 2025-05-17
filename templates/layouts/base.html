@@ -52,6 +52,33 @@
       <!-- wrap @e -->
       <!-- main @e -->
     </div>
+    <!-- accounts/templates/accounts/profile_modal.html -->
+<div class="modal fade" id="profileModal" tabindex="-1" aria-labelledby="profileModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="profileModalLabel">Hello {{ user|capfirst }} Complete Your Profile</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              <form action = "{% url 'profile' %}" method="post" enctype="multipart/form-data">
+                  {% csrf_token %}
+                  {{ form.as_p }}
+                  <button type="submit" class="btn btn-primary w-100">Submit</button>
+              </form>
+          </div>
+      </div>
+  </div>
+</div>
+{% if not user.profile %}
+<script>
+  // Show the modal on page load if the user has no profile
+  window.onload = function () {
+      var profileModal = new bootstrap.Modal(document.getElementById('profileModal'));
+      profileModal.show();
+  }
+</script>
+{% endif %}
     {% include 'layouts/scripts.html' %}
     <script>
     {% block scripts %} {% endblock %}

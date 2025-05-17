@@ -18,8 +18,9 @@
                 </div>
             </div><!-- .nk-block-head -->
             <div class="nk-block">
-                {% for roommate in roommates %}
+                
                 <div class="row g-gs">
+                    {% for roommate in roommates %}
                     <div class="col-sm-6 col-lg-4">
                         <a href="{% url 'profile_detail' roommate.pk %}">
                         <div class="gallery card card-bordered">
@@ -42,9 +43,9 @@
                         </a>
                         </div>
                     </div>
-                    
+                    {% endfor %}    
                 </div>
-                {% endfor %}
+               
             </div><!-- .nk-block -->
         </div>
     </div>

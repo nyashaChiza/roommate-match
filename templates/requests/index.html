@@ -47,9 +47,8 @@
                                                                 <a class="text-soft dropdown-toggle btn btn-icon btn-trigger" data-bs-toggle="dropdown" aria-expanded="false"><em class="icon ni ni-more-h"></em></a>
                                                                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-xs" >
                                                                     <ul class="link-list-plain">
-                                                                        <li><a class="link-list-plain" href="" class='px-1'>Update</a></li>
-                                                                        <li><a class="link-list-plain" href="{% url 'profile_detail' user.pk %}" class='px-1'>Profile</a></li>
-                                                                        </ul>
+                                                                        <li><a class="link-list-plain" href="{% url 'roommate_request_review' req.pk %}" class='px-1'>Review</a></li>
+                                                                    </ul>
                                                                 </div>
                                                             </div>
                                                         </td>
@@ -108,8 +107,7 @@
                                                                 <a class="text-soft dropdown-toggle btn btn-icon btn-trigger" data-bs-toggle="dropdown" aria-expanded="false"><em class="icon ni ni-more-h"></em></a>
                                                                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-xs" >
                                                                     <ul class="link-list-plain">
-                                                                        <li><a class="link-list-plain" href="" class='px-1'>Update</a></li>
-                                                                        <li><a class="link-list-plain" href="{% url 'profile_detail' user.pk %}" class='px-1'>Profile</a></li>
+                                                                        <li><a class="link-list-plain" href="{% url 'roommate_request_delete' req.pk %}" class='px-1'>remove</a></li>
                                                                         </ul>
                                                                 </div>
                                                             </div>

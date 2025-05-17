@@ -14,4 +14,11 @@ class RoommateRequestForm(forms.ModelForm):
             'receiver': 'Receiver',
             'sender': 'Sender',
         }
-        
+
+class RoommateRequestReviewForm(forms.ModelForm):
+    class Meta:
+        model = RoommateRequest
+        fields = ['status']
+        widgets = {
+            'status': forms.Select(attrs={'class': 'form-control'}),
+        }
