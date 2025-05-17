@@ -3,6 +3,7 @@
 import os
 from pathlib import Path
 from decouple import config
+from loguru import logger
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -118,3 +119,5 @@ STATICFILES_DIRS = [BASE_DIR / "static"]
 # For user-uploaded files (if needed)
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+LOGGER = logger

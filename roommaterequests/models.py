@@ -8,10 +8,10 @@ User = get_user_model()
 
 class RoommateRequest(models.Model):
     STATUS_CHOICES = [
-        ('pending', 'Pending'),
-        ('accepted', 'Accepted'),
-        ('declined', 'Declined'),
-        ('cancelled', 'Cancelled'),
+        ('Pending', 'Pending'),
+        ('Accepted', 'Accepted'),
+        ('Declined', 'Declined'),
+        ('Cancelled', 'Cancelled'),
     ]
 
     sender = models.ForeignKey(User, related_name='sent_roommate_requests', on_delete=models.CASCADE)

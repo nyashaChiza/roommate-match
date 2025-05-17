@@ -1,14 +1,13 @@
 {% extends 'layouts/base.html' %}
 {% load static %}
 
-
 {% block body %}
 <div class="card card-bordered card-preview">
     <div class="card-inner">
         <div id="accordion" class="accordion">
             <div class="accordion-item">
                 <a href="#" class="accordion-head collapsed" data-bs-toggle="collapse" data-bs-target="#accordion-item-1" aria-expanded="false">
-                    <h6 class="title">Requests Recieved</h6>
+                    <h6 class="title">Requests Recieved({{ received_requests.count}})</h6>
                     <span class="accordion-icon"></span>
                 </a>
                 <div class="accordion-body collapse" id="accordion-item-1" data-bs-parent="#accordion" style="">
@@ -20,13 +19,13 @@
                                         <thead>
                                             <tr>
                                                 <th>
-                                                    Username
+                                                    Sender
                                                 </th>
                                                 <th>
-                                                    Email
+                                                    Receiver
                                                 </th>
                                                 <th>
-                                                    Role
+                                                    Status
                                                 </th>
                                                 <th>
                                                     Created
@@ -37,19 +36,19 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {%for user in users %}
+                                            {%for req in received_requests %}
                                                     <tr>
-                                                        <td>{{user.user.first_name}} {{user.user.last_name}}</td>
-                                                        <td>{{user.user.email}}</td>
-                                                        <td>{{user.user_type}}</td>
-                                                        <td>{{user.created}}</td>
+                                                        <td>{{req.sender}}</td>
+                                                        <td>{{req.receiver}}</td>
+                                                        <td>{{req.status}}</td>
+                                                        <td>{{req.created}}</td>
                                                         <td class="tb-tnx-action">
                                                             <div class="dropdown">
                                                                 <a class="text-soft dropdown-toggle btn btn-icon btn-trigger" data-bs-toggle="dropdown" aria-expanded="false"><em class="icon ni ni-more-h"></em></a>
                                                                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-xs" >
                                                                     <ul class="link-list-plain">
                                                                         <li><a class="link-list-plain" href="" class='px-1'>Update</a></li>
-                                                                        <li><a class="link-list-plain" href="{% url 'profile_detail' user.user.pk %}" class='px-1'>Profile</a></li>
+                                                                        <li><a class="link-list-plain" href="{% url 'profile_detail' user.pk %}" class='px-1'>Profile</a></li>
                                                                         </ul>
                                                                 </div>
                                                             </div>
@@ -69,7 +68,7 @@
             </div>
             <div class="accordion-item">
                 <a href="#" class="accordion-head collapsed" data-bs-toggle="collapse" data-bs-target="#accordion-item-2" aria-expanded="false">
-                    <h6 class="title">Requests Sent</h6>
+                    <h6 class="title">Requests Sent({{sent_requests.count}})</h6>
                     <span class="accordion-icon"></span>
                 </a>
                 <div class="accordion-body collapse" id="accordion-item-2" data-bs-parent="#accordion">
@@ -81,13 +80,13 @@
                                         <thead>
                                             <tr>
                                                 <th>
-                                                    Username
+                                                    Sender
                                                 </th>
                                                 <th>
-                                                    Email
+                                                    Reciever
                                                 </th>
                                                 <th>
-                                                    Role
+                                                    Status
                                                 </th>
                                                 <th>
                                                     Created
@@ -98,19 +97,19 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {%for user in users %}
+                                            {%for req in sent_requests %}
                                                     <tr>
-                                                        <td>{{user.user.first_name}} {{user.user.last_name}}</td>
-                                                        <td>{{user.user.email}}</td>
-                                                        <td>{{user.user_type}}</td>
-                                                        <td>{{user.created}}</td>
+                                                        <td>{{req.sender}}</td>
+                                                        <td>{{req.receiver}}</td>
+                                                        <td>{{req.status}}</td>
+                                                        <td>{{req.created}}</td>
                                                         <td class="tb-tnx-action">
                                                             <div class="dropdown">
                                                                 <a class="text-soft dropdown-toggle btn btn-icon btn-trigger" data-bs-toggle="dropdown" aria-expanded="false"><em class="icon ni ni-more-h"></em></a>
                                                                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-xs" >
                                                                     <ul class="link-list-plain">
                                                                         <li><a class="link-list-plain" href="" class='px-1'>Update</a></li>
-                                                                        <li><a class="link-list-plain" href="{% url 'profile_detail' user.user.pk %}" class='px-1'>Profile</a></li>
+                                                                        <li><a class="link-list-plain" href="{% url 'profile_detail' user.pk %}" class='px-1'>Profile</a></li>
                                                                         </ul>
                                                                 </div>
                                                             </div>

@@ -1,8 +1,17 @@
 # accounts/views.py
 
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, redirect, render
+from roommaterequests.forms import RoommateRequestForm
 from .models import RoommateRequest
+from django.views.generic import  UpdateView
+from django.contrib.auth import get_user_model
+from django.contrib import messages
+from django.db import IntegrityError
+from django.conf import settings
+
+
+User = get_user_model()
 
 @login_required
 def roommate_requests_index(request):
@@ -25,3 +34,32 @@ def roommate_request_detail(request, pk):
     return render(request, 'requests/detail.html', {
         'request_obj': request_obj
     })
+
+
+    
+def create_request_view(request, pk):
+    receiver = get_object_or_404(User, pk=pk)
+    if receiver:
+        try:
+            roommate_request = RoommateRequest.objects.create(
+                    sender=request.user,
+                    receiver=receiver,
+                )
+            roommate_request.save()
+               
+            messages.success(request, 'Roommate request created successfully!')
+        except IntegrityError:
+            messages.warning(request, 'A roommate request to this user already exists.')
+    settings.LOGGER.info(f"Roommate request created from {request.user.username} to {receiver.username}")
+    return redirect('profile_detail', pk=request.user.profile.pk)
+
+
+class RoommateRequestReviewView(UpdateView):
+    model = RoommateRequest
+    fields = ['status']
+    template_name = 'requests/review.html'
+    form_class = RoommateRequestForm
+
+    def form_valid(self, form):
+        form.instance.status = 'Accepted'
+        return super().form_valid(form)
