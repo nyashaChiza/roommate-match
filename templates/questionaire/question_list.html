@@ -1,0 +1,26 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block body %}
+    <div class="code-block">
+        <form method="post">
+            {% if form.errors %}
+                <div class="alert alert-pro alert-danger">
+                    <ul>
+                        {% for field, errors in form.errors.items %}
+                            <li><strong>{{ field|capfirst }}</strong>:
+                                {% for error in errors %}
+                                    <span>{{ error }}</span>
+                                {% endfor %}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+            {% csrf_token %}
+            {{ form.as_p }} <!-- Render form fields as paragraphs -->
+            <button class="btn btn-lg btn-primary btn-block my-1" type="submit">Sign Up</button>
+            <a href="{% url 'account_login' %}" class="btn btn-lg btn-secondary btn-block my-1" type="submit">Back</a>
+          </form>
+    </div>
+{% endblock %}
