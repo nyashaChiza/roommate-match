@@ -16,58 +16,58 @@ class Profile(models.Model):
         ('Admin', 'Admin'),
     ]
     STATUS_TYPES = [
-        ('pending', 'Pending'),
-        ('approved', 'Approved'),
-        ('rejected', 'Rejected'),
+        ('Pending', 'Pending'),
+        ('Approved', 'Approved'),
+        ('Rejected', 'Rejected'),
     ]
 
     GENDER_CHOICES = [
-        ('male', 'Male'),
-        ('female', 'Female'),
-        ('other', 'Other'),
+        ('Male', 'Male'),
+        ('Female', 'Female'),
+        ('Other', 'Other'),
         ('Prefer not to say', 'Prefer not to say'),
     ]
 
     SLEEP_SCHEDULE = [
-        ('early_bird', 'Early Bird'),
-        ('night_owl', 'Night Owl'),
-        ('flexible', 'Flexible'),
+        ('Early Bird', 'Early Bird'),
+        ('Night Owl', 'Night Owl'),
+        ('Flexible', 'Flexible'),
     ]
 
     CLEANLINESS_LEVEL = [
-        ('neat', 'Neat'),
-        ('average', 'Average'),
-        ('messy', 'Messy'),
+        ('Neat', 'Neat'),
+        ('Average', 'Average'),
+        ('Messy', 'Messy'),
     ]
 
     SOCIAL_HABITS = [
-        ('introvert', 'Introvert'),
-        ('extrovert', 'Extrovert'),
-        ('ambivert', 'Ambivert'),
+        ('Introvert', 'Introvert'),
+        ('Extrovert', 'Extrovert'),
+        ('Ambivert', 'Ambivert'),
     ]
 
     STUDY_PREFERENCE = [
-        ('quiet', 'Quiet and private'),
-        ('group', 'Group study'),
-        ('mixed', 'Mixed'),
+        ('Quiet', 'Quiet and private'),
+        ('Group', 'Group study'),
+        ('Mixed', 'Mixed'),
     ]
 
     NOISE_TOLERANCE = [
-        ('low', 'Low'),
-        ('medium', 'Medium'),
-        ('high', 'High'),
+        ('Low', 'Low'),
+        ('Medium', 'Medium'),
+        ('High', 'High'),
     ]
 
     COOKING_FREQUENCY = [
-        ('rarely', 'Rarely'),
-        ('sometimes', 'Sometimes'),
-        ('frequently', 'Frequently'),
+        ('Rarely', 'Rarely'),
+        ('Sometimes', 'Sometimes'),
+        ('Frequently', 'Frequently'),
     ]
 
     GUEST_POLICY = [
-        ('never', 'Never'),
-        ('sometimes', 'Sometimes'),
-        ('often', 'Often'),
+        ('Never', 'Never'),
+        ('Sometimes', 'Sometimes'),
+        ('Often', 'Often'),
     ]
 
     PET_PREFERENCE = [
@@ -79,7 +79,7 @@ class Profile(models.Model):
     SMOKING_PREFERENCE = [
         ('Non-smoker', 'Non-smoker'),
         ('Okay with smoking', 'Okay with smoking'),
-        ('smoker', 'Smoker'),
+        ('Smoker', 'Smoker'),
     ]
 
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')

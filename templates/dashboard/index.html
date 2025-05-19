@@ -22,7 +22,7 @@
                 <div class="row g-gs">
                     {% for roommate in roommates %}
                     <div class="col-sm-6 col-lg-4">
-                        <a href="{% url 'profile_detail' roommate.pk %}">
+                        <a href="{% url 'profile_detail' roommate.profile.pk %}">
                         <div class="gallery card card-bordered">
                                 <img class="w-100 rounded-top" src="{% static 'images/stock/a.jpg' %}" alt="">
                             </a>
@@ -32,8 +32,8 @@
                                         <img src="{% static 'images/stock/a-sm.jpg' %}" alt="">
                                     </div>
                                     <div class="user-info">
-                                        <span class="lead-text">{{ roommate.first_name}} {{ roommate.last_name}}</span>
-                                        <span class="sub-text">{{ roommate.email}}</span>
+                                        <span class="lead-text">{{ roommate }}</span>
+                                       
                                     </div>
                                 </div>
                                 <div>
