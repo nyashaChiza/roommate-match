@@ -25,7 +25,7 @@ class Profile(models.Model):
         ('male', 'Male'),
         ('female', 'Female'),
         ('other', 'Other'),
-        ('prefer_not_to_say', 'Prefer not to say'),
+        ('Prefer not to say', 'Prefer not to say'),
     ]
 
     SLEEP_SCHEDULE = [
@@ -71,14 +71,14 @@ class Profile(models.Model):
     ]
 
     PET_PREFERENCE = [
-        ('no_pets', 'No pets'),
-        ('ok_with_pets', 'Okay with pets'),
-        ('have_pets', 'Have pets'),
+        ('No pets', 'No pets'),
+        ('Okay with pets', 'Okay with pets'),
+        ('Have pets', 'Have pets'),
     ]
 
     SMOKING_PREFERENCE = [
-        ('non_smoker', 'Non-smoker'),
-        ('ok_with_smoking', 'Okay with smoking'),
+        ('Non-smoker', 'Non-smoker'),
+        ('Okay with smoking', 'Okay with smoking'),
         ('smoker', 'Smoker'),
     ]
 

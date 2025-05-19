@@ -6,6 +6,7 @@ from accounts.models import Profile
 from django.shortcuts import get_object_or_404, render, redirect
 from accounts.forms import ProfileForm
 from django.contrib import messages
+from roommaterequests.helpers import MatchService, get_user_match_score
 
 @method_decorator(login_required, name='dispatch')
 class DashboardView(TemplateView):
@@ -14,7 +15,8 @@ class DashboardView(TemplateView):
     def get_context_data(self, **kwargs):
           context = super().get_context_data(**kwargs)
           context['form'] = ProfileForm()
-          context['roommates'] = Profile.objects.all()
+          service = MatchService(user=self.request.user)
+          context['roommates'] = service.get_ranked_matches(min_score=0.01)
           return context
     
 
@@ -39,4 +41,5 @@ def profile_view(request):
 @login_required
 def profile_detail_view(request, pk):
     profile = Profile.objects.get(pk=pk)
+    profile = get_user_match_score(base_user=request.user, other_user=profile.user)
     return render(request, 'account/detail.html', {'profile': profile})

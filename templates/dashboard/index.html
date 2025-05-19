@@ -32,12 +32,12 @@
                                         <img src="{% static 'images/stock/a-sm.jpg' %}" alt="">
                                     </div>
                                     <div class="user-info">
-                                        <span class="lead-text">{{ roommate.user.first_name}} {{ roommate.user.last_name}}</span>
-                                        <span class="sub-text">{{ roommate.user.email}}</span>
+                                        <span class="lead-text">{{ roommate.first_name}} {{ roommate.last_name}}</span>
+                                        <span class="sub-text">{{ roommate.email}}</span>
                                     </div>
                                 </div>
                                 <div>
-                                    <button class="btn btn-p-0 btn-nofocus"><em class="icon ni ni-heart"></em><span>34</span></button>
+                                    <button class="btn btn-p-0 btn-nofocus"><em class="icon ni ni-heart"></em><span>{{roommate.score}}</span></button>
                                 </div>
                             </div>
                         </a>

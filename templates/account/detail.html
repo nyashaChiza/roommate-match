@@ -28,7 +28,7 @@
                                      <div class="data-item" data-bs-toggle="modal" data-bs-target="#profile-edit">
                                          <div class="data-col">
                                              <span class="data-label">Full Name</span>
-                                             <span class="data-value">{{ profile.user.first_name }} {{ profile.user.last_name }}</span>
+                                             <span class="data-value">{{ profile.profile.user.first_name }} {{ profile.profile.user.last_name }}</span>
                                          </div>
                                          <div class="data-col data-col-end"><span class="data-more"><em class="icon ni ni-forward-ios"></em></span></div>
                                      </div><!-- data-item -->
@@ -42,21 +42,21 @@
                                      <div class="data-item">
                                          <div class="data-col">
                                              <span class="data-label">Gender</span>
-                                             <span class="data-value">{{ user.profile.gender }}</span>
+                                             <span class="data-value">{{ profile.profile.gender }}</span>
                                          </div>
                                          <div class="data-col data-col-end"><span class="data-more disable"><em class="icon ni ni-lock-alt"></em></span></div>
                                      </div><!-- data-item -->
                                      <div class="data-item" data-bs-toggle="modal" data-bs-target="#profile-edit">
                                          <div class="data-col">
                                              <span class="data-label">Address</span>
-                                             <span class="data-value text-soft">{{ user.profile.address }}</span>
+                                             <span class="data-value text-soft">{{ profile.profile.address }}</span>
                                          </div>
                                          <div class="data-col data-col-end"><span class="data-more"><em class="icon ni ni-forward-ios"></em></span></div>
                                      </div><!-- data-item -->
                                      <div class="data-item" data-bs-toggle="modal" data-bs-target="#profile-edit">
                                          <div class="data-col">
                                              <span class="data-label">Age</span>
-                                             <span class="data-value">{{ profile.get_age }}</span>
+                                             <span class="data-value">{{ profile.profile.get_age }}</span>
                                          </div>
                                          <div class="data-col data-col-end"><span class="data-more"><em class="icon ni ni-forward-ios"></em></span></div>
                                      </div>
@@ -72,24 +72,67 @@
                                     <div class="data-item" data-bs-toggle="modal" data-bs-target="#profile-edit">
                                         <div class="data-col">
                                             <span class="data-label">Sleep Schedule</span>
-                                            <span class="data-value">{{ profile.sleep_schedule }}</span>
+                                            <span class="data-value">{{ profile.profile.sleep_schedule }}</span>
                                         </div>
                                         <div class="data-col data-col-end"><span class="data-more"><em class="icon ni ni-forward-ios"></em></span></div>
                                     </div><!-- data-item -->
                                     <div class="data-item" data-bs-toggle="modal" data-bs-target="#profile-edit">
                                         <div class="data-col">
                                             <span class="data-label">Level Of cleanliness</span>
-                                            <span class="data-value">{{ profile.cleanliness_level }}</span>
+                                            <span class="data-value">{{ profile.profile.cleanliness_level }}</span>
                                         </div>
                                         <div class="data-col data-col-end"><span class="data-more"><em class="icon ni ni-forward-ios"></em></span></div>
                                     </div><!-- data-item -->
                                     <div class="data-item">
                                         <div class="data-col">
                                             <span class="data-label">Social Habits</span>
-                                            <span class="data-value">{{ profile.social_habits }}</span>
+                                            <span class="data-value">{{ profile.profile.social_habits }}</span>
                                         </div>
                                         <div class="data-col data-col-end"><span class="data-more disable"><em class="icon ni ni-lock-alt"></em></span></div>
                                     </div><!-- data-item -->
+                                    <div class="data-item">
+                                        <div class="data-col">
+                                            <span class="data-label">Study Preference</span>
+                                            <span class="data-value">{{ profile.profile.study_preference }}</span>
+                                        </div>
+                                        <div class="data-col data-col-end"><span class="data-more disable"><em class="icon ni ni-lock-alt"></em></span></div>
+                                    </div>
+                                    <div class="data-item">
+                                        <div class="data-col">
+                                            <span class="data-label">Noise Tolerance</span>
+                                            <span class="data-value">{{ profile.profile.noise_tolerance }}</span>
+                                        </div>
+                                        <div class="data-col data-col-end"><span class="data-more disable"><em class="icon ni ni-lock-alt"></em></span></div>
+                                    </div>
+                                    <div class="data-item">
+                                        <div class="data-col">
+                                            <span class="data-label">Cooking Frequency</span>
+                                            <span class="data-value">{{ profile.profile.cooking_frequency }}</span>
+                                        </div>
+                                        <div class="data-col data-col-end"><span class="data-more disable"><em class="icon ni ni-lock-alt"></em></span></div>
+                                    </div>
+                                    <div class="data-item">
+                                        <div class="data-col">
+                                            <span class="data-label">Guest Policy</span>
+                                            <span class="data-value">{{ profile.profile.guest_policy }}</span>
+                                        </div>
+                                        <div class="data-col data-col-end"><span class="data-more disable"><em class="icon ni ni-lock-alt"></em></span></div>
+                                    </div>
+                                    <div class="data-item">
+                                        <div class="data-col">
+                                            <span class="data-label">Pet Preference</span>
+                                            <span class="data-value">{{ profile.profile.pet_preference }}</span>
+                                        </div>
+                                        <div class="data-col data-col-end"><span class="data-more disable"><em class="icon ni ni-lock-alt"></em></span></div>
+                                    </div>
+                                    <div class="data-item">
+                                        <div class="data-col">
+                                            <span class="data-label">Smoking Preference</span>
+                                            <span class="data-value">{{ profile.profile.smoking_preference }}</span>
+                                        </div>
+                                        <div class="data-col data-col-end"><span class="data-more disable"><em class="icon ni ni-lock-alt"></em></span></div>
+                                    </div>
+                                    
                                     <!-- data-item -->
                                    
                                 </div><!-- data-list -->
@@ -103,14 +146,14 @@
                                     <div class="data-item" data-bs-toggle="modal" data-bs-target="#profile-edit">
                                         <div class="data-col">
                                             <span class="data-label">hobbies</span>
-                                            <span class="data-value">{{ profile.hobbies }}</span>
+                                            <span class="data-value">{{ profile.profile.hobbies }}</span>
                                         </div>
                                         <div class="data-col data-col-end"><span class="data-more"><em class="icon ni ni-forward-ios"></em></span></div>
                                     </div><!-- data-item -->
                                     <div class="data-item" data-bs-toggle="modal" data-bs-target="#profile-edit">
                                         <div class="data-col">
                                             <span class="data-label">Interests</span>
-                                            <span class="data-value">{{ profile.interests }}</span>
+                                            <span class="data-value">{{ profile.profile.interests }}</span>
                                         </div>
                                         <div class="data-col data-col-end"><span class="data-more"><em class="icon ni ni-forward-ios"></em></span></div>
                                     </div><!-- data-item -->
@@ -126,11 +169,11 @@
                                  <div class="card-inner">
                                      <div class="user-card">
                                          <div class="user-avatar bg-primary">
-                                             <span>{{ user.avatar }}</span>
+                                             <span>{{ profile.score }}</span>
                                          </div>
                                          <div class="user-info">
-                                             <span class="lead-text">{{ profile.user.first_name }} {{ profile.user.last_name }}</span>
-                                             <span class="sub-text">{{ user}}</span>
+                                             <span class="lead-text">{{ profile.first_name }} {{ profile.last_name }}</span>
+                                             <span class="sub-text">{{ profile}}</span>
                                          </div>
                                          
                                      </div><!-- .user-card -->
@@ -139,7 +182,7 @@
                                     <div class="user-card">
                                       
                                         <div class="user-info">
-                                            <a href="{% url 'roommate_request_create' profile.user.pk %}" class="btn btn-outline-primary btn-lg btn-action"><span>Send Request</span><em class="icon ni ni-check"></em></a>
+                                            <a href="{% url 'roommate_request_create' profile.profile.pk %}" class="btn btn-outline-primary btn-lg btn-action"><span>Send Request</span><em class="icon ni ni-check"></em></a>
                                         </div>
                                         
                                     </div>
