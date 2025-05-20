@@ -38,7 +38,7 @@
                         </a>
                     </li>
                     <li class="nk-menu-item">
-                        <a href="{% url 'question_create' %}" class="nk-menu-link">
+                        <a href="{% if user.questions.count == 0 %}{% url 'question_create' %}{% else%}{% url 'question_list' %}{% endif %}" class="nk-menu-link">
                             <span class="nk-menu-icon">
                                 <em class="icon ni ni-question"></em>
                             </span>

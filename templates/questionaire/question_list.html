@@ -2,25 +2,36 @@
 {% load static %}
 
 {% block body %}
-    <div class="code-block">
-        <form method="post">
-            {% if form.errors %}
-                <div class="alert alert-pro alert-danger">
-                    <ul>
-                        {% for field, errors in form.errors.items %}
-                            <li><strong>{{ field|capfirst }}</strong>:
-                                {% for error in errors %}
-                                    <span>{{ error }}</span>
-                                {% endfor %}
-                            </li>
-                        {% endfor %}
-                    </ul>
+    <div class="card h-100">
+    <div class="card-inner">
+        <div class="card-head">
+            <h4 class="card-title">These are the questions potential roommates will answer</h4>
+        </div>
+
+        <div class="code-block">
+            {% if questions %}
+                <ol class="list-group list-group-numbered">
+                    {% for question in user.questions.all %}
+                        <li class="list-group-item d-flex justify-content-between align-items-start">
+                            <div class="ms-2 me-auto">
+                                <div class="fw-bold">Question {{ forloop.counter }}</div>
+                                {{ question.text }}
+                            </div>
+                            {% if question.is_active %}
+                                <span class="badge bg-success rounded-pill">Active</span>
+                            {% else %}
+                                <span class="badge bg-secondary rounded-pill">Inactive</span>
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                </ol>
+            {% else %}
+                <div class="alert alert-info" role="alert">
+                    You have not added any roommate questions yet.
                 </div>
             {% endif %}
-            {% csrf_token %}
-            {{ form.as_p }} <!-- Render form fields as paragraphs -->
-            <button class="btn btn-lg btn-primary btn-block my-1" type="submit">Sign Up</button>
-            <a href="{% url 'account_login' %}" class="btn btn-lg btn-secondary btn-block my-1" type="submit">Back</a>
-          </form>
+        </div>
     </div>
+</div>
+
 {% endblock %}
