@@ -56,6 +56,23 @@
                                     </div><!-- data-list -->
                                  <!-- data-list -->
                              </div>
+                            <div class="nk-block">
+                            <div class="nk-data data-list">
+                                <div class="data-head">
+                                    <h6 class="overline-title">Questions and Answers</h6>
+                                </div>
+
+                                {% for item in questionnaire %}
+                                <div class="data-item">
+                                    <div class="question-block">
+                                        <span class="data-label fw-bold d-block mb-1  text-primary">Question.</span><span class="data-label d-block"> {{ item.question }}</span>
+                                        <span class="data-label fw-bold d-block mb-1  text-info">Answer.</span><span class="data-value d-block"> {{ item.answer }}</span>
+                                    </div>
+                                </div>
+                                {% endfor %}
+
+                            </div><!-- data-list -->
+                        </div>
                          </div>
                          <div class="card-aside card-aside-left user-aside toggle-slide toggle-slide-left toggle-break-lg toggle-screen-lg" data-toggle-body="true" data-content="userAside" data-toggle-screen="lg" data-toggle-overlay="true">
                              <div class="card-inner-group" data-simplebar="init"><div class="simplebar-wrapper" style="margin: 0px;"><div class="simplebar-height-auto-observer-wrapper"><div class="simplebar-height-auto-observer"></div></div><div class="simplebar-mask"><div class="simplebar-offset" style="right: 0px; bottom: 0px;"><div class="simplebar-content-wrapper" tabindex="0" role="region" aria-label="scrollable content" style="height: auto; overflow: hidden;"><div class="simplebar-content" style="padding: 0px;">

@@ -58,9 +58,20 @@ def create_request_view(request, pk):
 def roommate_request_review(request, pk):
     roommate_request = get_object_or_404(RoommateRequest, pk=pk)
 
-    # Restrict access to only the receiver of the request
+    # Restrict access to only the receiver
     if request.user != roommate_request.receiver:
         return render(request, '403.html', status=403)
+
+    questions = list(request.user.questions.all()[:3])
+    questionnaire = []
+
+    for i, question in enumerate(questions, 1):
+        answer_qs = question.answers.filter(user=roommate_request.sender).first()
+        answer = answer_qs.answer_text if answer_qs else "No answer provided"
+        questionnaire.append({
+            f'question': question.text,
+            f'answer': answer,
+        })
 
     if request.method == 'POST':
         form = RoommateRequestReviewForm(request.POST, instance=roommate_request)
@@ -70,13 +81,14 @@ def roommate_request_review(request, pk):
             return redirect('roommate_requests_index')
         else:
             messages.error(request, 'There was an error reviewing the request.')
-            settings.LOGGER.warning(f"Error reviewing roommate request from {form.errors}")
+            settings.LOGGER.warning(f"Error reviewing roommate request: {form.errors}")
     else:
-        form = RoommateRequestForm(instance=roommate_request)
+        form = RoommateRequestReviewForm(instance=roommate_request)
 
     return render(request, 'requests/detail.html', {
         'form': form,
         'roommate_request': roommate_request,
+        'questionnaire': questionnaire,
     })
     
 
