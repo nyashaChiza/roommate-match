@@ -182,7 +182,8 @@
                                     <div class="user-card">
                                       
                                         <div class="user-info">
-                                            <a href="{% url 'roommate_request_create' profile.pk %}" class="btn btn-outline-primary btn-lg btn-action"><span>Send Request</span><em class="icon ni ni-check"></em></a>
+                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalForm">Send Request</button>
+                                            <!-- <a href="{% url 'roommate_request_create' profile.pk %}" class="btn btn-outline-primary btn-lg btn-action"><span>Send Request</span><em class="icon ni ni-check"></em></a> -->
                                         </div>
                                         
                                     </div>
@@ -196,4 +197,45 @@
          </div>
      </div>
  </div>
+
+ <!-- Modal Form -->
+ <div class="modal fade" id="modalForm">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Customer Info</h5>
+                <a href="#" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <em class="icon ni ni-cross"></em>
+                </a>
+            </div>
+            <div class="modal-body">
+                <form action="{% url 'answer_create' profile.pk %}" method="post" class="form-validate is-alter">
+                    {% csrf_token %}
+                    
+                    {% for question in profile.questions.all %}
+                    <div class="form-group">
+                        <label class="form-label">{{ question.text }}</label>
+                        <div class="form-control-wrap">
+                            <textarea 
+                                name="answer_{{ question.id }}" 
+                                class="form-control" 
+                                rows="2" 
+                                placeholder="Type your answer..." 
+                                required></textarea>
+                        </div>
+                    </div>
+                    {% endfor %}
+            
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-lg btn-primary">Submit Answers</button>
+                    </div>
+                </form>
+            </div>
+            
+            <div class="modal-footer bg-light">
+                <span class="sub-text">Modal Footer Text</span>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

@@ -28,7 +28,7 @@
                                      <div class="data-item" data-bs-toggle="modal" data-bs-target="#profile-edit">
                                          <div class="data-col">
                                              <span class="data-label">Sender</span>
-                                             <span class="data-value"> {{ roommate_request.sender }}</span>
+                                             <span class="data-value"> <a href="{% url 'profile_detail' roommate_request.sender.profile.pk %}">{{ roommate_request.sender }}</a></span>
                                          </div>
                                          <div class="data-col data-col-end"><span class="data-more"><em class="icon ni ni-forward-ios"></em></span></div>
                                      </div><!-- data-item -->

@@ -1,11 +1,19 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import CreateView, ListView
 from django.urls import reverse_lazy
+from django.contrib import messages
+from roommaterequests.models import RoommateRequest
 from .models import Question, Answer
 from .forms import QuestionForm, AnswerForm  # assume we have these forms
-from django.shortcuts import render, redirect
+from django.shortcuts import get_object_or_404, render, redirect
 from django.forms import modelformset_factory
 from django.contrib.auth.decorators import login_required
+from django.conf import settings    
+from roommaterequests.forms import RoommateRequestReviewForm
+from django.contrib.auth import get_user_model
+
+
+User = get_user_model()
 
 @login_required
 def add_profile_questions(request):
@@ -35,16 +43,53 @@ class QuestionListView(LoginRequiredMixin, ListView):
         return Question.objects.filter(user=self.request.user)
 
 
-# Create Answer
-class AnswerCreateView(LoginRequiredMixin, CreateView):
-    model = Answer
-    form_class = AnswerForm
-    template_name = 'answer_create.html'
-    success_url = reverse_lazy('answer_list')
 
-    def form_valid(self, form):
-        form.instance.user = self.request.user
-        return super().form_valid(form)
+
+@login_required
+def answer_questions_for_profile(request, pk):
+    # The profile whose questions will be answered
+    user = get_object_or_404(User, pk=pk)
+
+    # Prevent answering own questions
+    if user == request.user:
+        return render(request, '403.html', status=403)
+
+    # Fetch the first 3 questions from the profile
+    questions = list(user.questions.all()[:3])
+    questionnaire = []
+
+    for question in questions:
+        existing_answer = question.answers.filter(user=request.user).first()
+        questionnaire.append({
+            "question": question.text,
+            "answer": existing_answer.answer_text if existing_answer else "",
+            "question_id": question.id
+        })
+
+    if request.method == 'POST':
+        for question in questions:
+            answer_text = request.POST.get(f'answer_{question.id}', '').strip()
+            if answer_text:
+                Answer.objects.update_or_create(
+                    user=request.user,
+                    question=question,
+                    defaults={'answer_text': answer_text}
+                )
+        # Optionally, you can also create a RoommateRequest here
+        roommate_request = RoommateRequest.objects.create(
+            sender=request.user,
+            receiver=user,
+        )
+        roommate_request.save()
+        messages.success(request, "Your answers have been submitted.")
+        return redirect('profile_detail', pk=user.profile.pk)
+
+    return render(request, 'que/answer_form.html', {
+        'profile': user,
+        'questions': questions,
+        'questionnaire': questionnaire,
+    })
+
 
 # List Answers
 class AnswerListView(LoginRequiredMixin, ListView):

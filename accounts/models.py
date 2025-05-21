@@ -91,6 +91,7 @@ class Profile(models.Model):
     gender = models.CharField(max_length=20, choices=GENDER_CHOICES, blank=True, null=True)
     date_of_birth = models.DateField(blank=True, null=True)
     address = models.TextField(blank=True, null=True)
+    Phone_number = models.CharField(max_length=15, blank=True, null=True)
 
     # Matching Preferences
     sleep_schedule = models.CharField(max_length=20, choices=SLEEP_SCHEDULE, blank=True, null=True)

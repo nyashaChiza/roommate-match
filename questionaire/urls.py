@@ -1,7 +1,7 @@
 from django.urls import path
 from .views import (
     add_profile_questions, QuestionListView,
-    AnswerCreateView, AnswerListView
+    answer_questions_for_profile, AnswerListView
 )
 
 urlpatterns = [
@@ -9,5 +9,5 @@ urlpatterns = [
     path('questions/create/', add_profile_questions, name='question_create'),
 
     path('answers/', AnswerListView.as_view(), name='answer_list'),
-    path('answers/create/', AnswerCreateView.as_view(), name='answer_create'),
+    path('roommate-request/<int:pk>/review/', answer_questions_for_profile, name='answer_create'),
 ]
