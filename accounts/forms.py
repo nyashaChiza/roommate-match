@@ -38,6 +38,8 @@ class ProfileForm(forms.ModelForm):
             'study_preference': forms.Select(attrs={'class': 'form-control form-control-lg'}),
             'hobbies': forms.Textarea(attrs={'class': 'form-control form-control-lg', 'rows': 2}),
             'interests': forms.Textarea(attrs={'class': 'form-control form-control-lg', 'rows': 2}),
+            'phone_number': forms.TextInput(attrs={'class': 'form-control form-control-lg'}),
+            'noise_tolerance': forms.Select(attrs={'class': 'form-control form-control-lg'}),
         }
 
     def __init__(self, *args, **kwargs):
